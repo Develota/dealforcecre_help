@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node --env-file=.env src/build.mjs",
     "deploy:pages": "npx --yes wrangler pages deploy dist --project-name=dfcre-help",
-    "deploy:gh": "node --env-file=.env src/deploy-gh.mjs"
+    "deploy:gh": "node --env-file=.env src/deploy-gh.mjs",
+    "dev": "node src/dev-server.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.0",

@@ -26,6 +26,7 @@ Fill in `.env`:
 |---|---|---|
 | `TRAINUAL_API_TOKEN` | building | Trainual → Settings → API |
 | `GH_PAGES_REPO` | `deploy:gh` | `https://github.com/<user>/<repo>.git`, public repo |
+| `GH_PAGES_URL` | `deploy:gh` | only if Pages uses a custom domain — see Troubleshooting |
 
 `.env` is gitignored. Never commit it.
 
@@ -34,46 +35,53 @@ Fill in `.env`:
 ```bash
 npm run build       # fetch content and build the index into dist/
 npm run deploy:gh   # publish dist/ to GitHub Pages
+npm run dev         # serve dist/ locally with CORS, for trying changes first
 ```
 
 Always `build` before you deploy — `deploy` only uploads what is already in `dist/`.
 
-`npm run build` writes four files to `dist/` and nothing else. Check the search itself on
-the deployed URL after a deploy.
+`npm run build` writes four files to `dist/` and nothing else.
+
+### Trying changes before publishing
+
+`npm run dev` serves `dist/` on `http://localhost:4477` with permissive CORS. Point your
+application's script tag at `http://localhost:4477/help-widget.js`, and each rebuild shows
+up on the next page refresh — no deploy needed. Set `DEV_PORT` to use another port.
 
 ## Embedding
 
-Add two lines wherever the search box belongs:
+Add one line to your layout:
 
 ```html
 <script src="https://<your-pages-url>/help-widget.js" defer></script>
-<div id="dfcre-help"></div>
 ```
 
 `npm run deploy:gh` prints the exact tag with your URL filled in.
 
-That is the entire integration. The widget renders its own input and results, loads
-nothing until someone clicks into the search box, and keeps its styling isolated so it
-cannot clash with the host page. Results open in a new tab.
+That is the entire integration. No markup is needed: the widget appends a floating
+button to the bottom-right corner, renders its panel from there, and loads nothing until
+someone opens it. Its styling lives in a shadow root, so it cannot clash with the host
+page. Results open in a new tab.
 
-Optional attributes on the script tag:
-
-| attribute | default | purpose |
-|---|---|---|
-| `data-mount` | `dfcre-help` | id of the element to render into |
-| `data-base` | script's own folder | where to load the index from |
+Set `data-base` on the script tag to load the index from somewhere other than the
+script's own folder — useful when testing a local build against a deployed widget.
 
 ## Choosing what is searchable
 
 `config.json` lists the Trainual subjects to index:
 
 ```json
-{ "id": 73743, "title": "Inbox", "uuid": "5735086f-…" }
+{ "id": 73743, "title": "Inbox", "group": "Everyday work", "uuid": "5735086f-…" }
 ```
 
 - `id` — the subject id, from its Trainual URL
 - `uuid` — its Public Share id, the last part of `https://share.trainual.com/subject/<uuid>`
+- `group` — the heading it appears under in the widget
 - `title` — a label for humans; the live title from Trainual is what gets indexed
+
+**Order matters.** Subjects appear in the widget in the order listed here, and
+consecutive entries sharing a `group` are shown together under one heading. Reordering
+the file reorders the widget.
 
 ### Adding a subject
 

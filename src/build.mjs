@@ -107,13 +107,18 @@ function extract(html) {
 
 async function buildRecords() {
   const records = [];
-  const byId = new Map(configured.map((s) => [Number(s.id), s]));
+  const fetched = new Map(
+    (await api('subjects?page[size]=100')).data.map((s) => [Number(s.id), s]),
+  );
 
-  const all = (await api('subjects?page[size]=100')).data.filter((s) => byId.has(Number(s.id)));
-
-  // Sequential over subjects keeps the log readable; parallelism is inside.
-  for (const subject of all) {
-    const cfg = byId.get(Number(subject.id));
+  // Iterate config.json rather than the API response: the configured order is the
+  // order the widget's browse list follows, and the API returns subjects by id.
+  for (const cfg of configured) {
+    const subject = fetched.get(Number(cfg.id));
+    if (!subject) {
+      console.warn(`  ! subject ${cfg.id} (${cfg.title}) not returned by the API — skipped`);
+      continue;
+    }
     const subjectTitle = subject.attributes.title.trim();
 
     const full = await api(`subjects/${subject.id}?include=content`);
@@ -132,6 +137,7 @@ async function buildRecords() {
         if (empty) return null; // genuinely empty step
         return {
           id: `${doc.id}-${p.id}`,
+          group: cfg.group ?? '',
           subject: subjectTitle,
           topic: doc.attributes.title.trim(),
           title: data.attributes.title?.trim() || doc.attributes.title.trim(),
@@ -156,7 +162,7 @@ const records = await buildRecords();
 
 const mini = new MiniSearch({
   fields: ['title', 'topic', 'subject', 'text'],
-  storeFields: ['subject', 'topic', 'title', 'text', 'url'],
+  storeFields: ['group', 'subject', 'topic', 'title', 'text', 'url'],
   searchOptions: {
     boost: { title: 4, topic: 2, subject: 1 },
     prefix: true,
@@ -188,8 +194,8 @@ await esbuild({
   logLevel: 'warning',
 });
 
-// Cloudflare Pages reads this at deploy time. S3 ignores it (deploy.mjs sets the
-// same headers via object metadata instead), so it is harmless to always emit.
+// Cloudflare Pages applies these at deploy time. GitHub Pages ignores the file and
+// serves everything with max-age=600, which the widget is built to tolerate.
 await writeFile(
   join(DIST, '_headers'),
   [

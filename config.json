@@ -1,120 +1,143 @@
 {
-  "_comment": "One entry per Trainual subject to index, in sidebar order. `uuid` is the Public Share id, taken from the share URL (https://share.trainual.com/subject/<uuid>). It is NOT available through the API and must be pasted by hand. `title` is a human label only - the build uses the live title from the API.",
+  "_comment": "One entry per Trainual subject to index, in the order they should appear. `group` is the heading it sits under in the widget; consecutive entries sharing a group are listed together. `uuid` is the Public Share id from https://share.trainual.com/subject/<uuid> - it is NOT available through the API and must be pasted by hand. `title` is a human label; the live title from Trainual is indexed.",
   "subjects": [
-    {
-      "id": 15,
-      "title": "Box & Dealforce File Management, Approvals, Signatures",
-      "uuid": "86cad9ef-aa29-4119-bb5e-1f70ef80418a"
-    },
     {
       "id": 17,
       "title": "DealforceCRE - Getting Started",
+      "group": "Getting started",
       "uuid": "1e38f20e-f53f-40e1-83a3-5cfe1673ac3b"
     },
     {
       "id": 8878,
       "title": "Getting Familiar with DealforceCRE",
+      "group": "Getting started",
       "uuid": "2b7aad27-b690-49c6-9f08-24bd9ec0039d"
     },
     {
-      "id": 8879,
-      "title": "Payments",
-      "uuid": "c4ccc7aa-6f91-4e5a-bd30-db2deafd8d48"
+      "id": 653167,
+      "title": "Two-Factor Authentication",
+      "group": "Getting started",
+      "uuid": "0a26e797-740b-4292-9a9e-9ded32ca7013"
     },
     {
-      "id": 8880,
-      "title": "Admin Modules",
-      "uuid": "be5ce713-1f21-4ece-b90b-2356c910965f"
-    },
-    {
-      "id": 16378,
-      "title": "Bid Management",
-      "uuid": "4a528f39-0985-47bc-b5d3-05d7c6ad1911"
+      "id": 371258,
+      "title": "Workflows for Users",
+      "group": "Getting started",
+      "uuid": "cb3e32cf-a91c-46cc-9326-995df8b6098a"
     },
     {
       "id": 26496,
       "title": "Todos",
+      "group": "Everyday work",
       "uuid": "2b8d90ff-3f4a-4e9b-ab25-d5476c3a9049"
     },
     {
       "id": 26497,
       "title": "Schedule",
+      "group": "Everyday work",
       "uuid": "e3d25216-7271-4cbb-ba75-75ac508a68a7"
-    },
-    {
-      "id": 46713,
-      "title": "External Users",
-      "uuid": "e2ab819a-c524-40a1-a02c-0bd17356aace"
-    },
-    {
-      "id": 49157,
-      "title": "Budgets",
-      "uuid": "fabaf891-2cfd-4488-ad40-ef3ac5f4f04e"
-    },
-    {
-      "id": 49404,
-      "title": "Reports",
-      "uuid": "fbc50d9b-4478-43fa-95b9-6ce1432bafdb"
-    },
-    {
-      "id": 49405,
-      "title": "Directory",
-      "uuid": "e0a7d861-06db-4c21-816d-c45442547819"
-    },
-    {
-      "id": 53524,
-      "title": "Construction Contracts & Change Orders",
-      "uuid": "3455755b-407e-4606-872b-a346740fedde"
-    },
-    {
-      "id": 69341,
-      "title": "Notebook",
-      "uuid": "91d6e15a-d6ca-4abc-83e9-250e9f590f4f"
     },
     {
       "id": 73743,
       "title": "Inbox",
+      "group": "Everyday work",
       "uuid": "5735086f-1410-49e3-95fb-4678587519e0"
     },
     {
-      "id": 169051,
-      "title": "Pay Applications",
-      "uuid": "ac3e639f-70f1-40e4-b953-148216cee27d"
+      "id": 69341,
+      "title": "Notebook",
+      "group": "Everyday work",
+      "uuid": "91d6e15a-d6ca-4abc-83e9-250e9f590f4f"
     },
     {
-      "id": 273346,
-      "title": "Draws",
-      "uuid": "258fa7b3-1ce3-491a-9b7f-5e237cc4ae3d"
-    },
-    {
-      "id": 294931,
-      "title": "Finance Tab",
-      "uuid": "10b58a53-adc4-4326-a4c1-531f2badc85a"
-    },
-    {
-      "id": 295896,
-      "title": "Construction RFI's",
-      "uuid": "62ddce65-d740-4d92-b35c-8165b62080fd"
+      "id": 49405,
+      "title": "Directory",
+      "group": "Everyday work",
+      "uuid": "e0a7d861-06db-4c21-816d-c45442547819"
     },
     {
       "id": 352880,
       "title": "Custom Fields",
+      "group": "Everyday work",
       "uuid": "277f5737-937e-4c9e-a9d1-1c7b324157c9"
     },
     {
-      "id": 371258,
-      "title": "Workflows for Users",
-      "uuid": "cb3e32cf-a91c-46cc-9326-995df8b6098a"
+      "id": 53524,
+      "title": "Construction Contracts & Change Orders",
+      "group": "Projects & construction",
+      "uuid": "3455755b-407e-4606-872b-a346740fedde"
     },
     {
-      "id": 653167,
-      "title": "Two-Factor Authentication",
-      "uuid": "0a26e797-740b-4292-9a9e-9ded32ca7013"
+      "id": 295896,
+      "title": "Construction RFI's",
+      "group": "Projects & construction",
+      "uuid": "62ddce65-d740-4d92-b35c-8165b62080fd"
+    },
+    {
+      "id": 16378,
+      "title": "Bid Management",
+      "group": "Projects & construction",
+      "uuid": "4a528f39-0985-47bc-b5d3-05d7c6ad1911"
+    },
+    {
+      "id": 273346,
+      "title": "Draws",
+      "group": "Projects & construction",
+      "uuid": "258fa7b3-1ce3-491a-9b7f-5e237cc4ae3d"
+    },
+    {
+      "id": 8879,
+      "title": "Payments",
+      "group": "Payments & budgets",
+      "uuid": "c4ccc7aa-6f91-4e5a-bd30-db2deafd8d48"
+    },
+    {
+      "id": 169051,
+      "title": "Pay Applications",
+      "group": "Payments & budgets",
+      "uuid": "ac3e639f-70f1-40e4-b953-148216cee27d"
     },
     {
       "id": 1278837,
       "title": "Payment Applications for External Users",
+      "group": "Payments & budgets",
       "uuid": "d6153b41-fd5a-4f78-b7c4-472106988f63"
+    },
+    {
+      "id": 49157,
+      "title": "Budgets",
+      "group": "Payments & budgets",
+      "uuid": "fabaf891-2cfd-4488-ad40-ef3ac5f4f04e"
+    },
+    {
+      "id": 294931,
+      "title": "Finance Tab",
+      "group": "Payments & budgets",
+      "uuid": "10b58a53-adc4-4326-a4c1-531f2badc85a"
+    },
+    {
+      "id": 15,
+      "title": "Box & Dealforce File Management, Approvals, Signatures",
+      "group": "Files & external users",
+      "uuid": "86cad9ef-aa29-4119-bb5e-1f70ef80418a"
+    },
+    {
+      "id": 46713,
+      "title": "External Users",
+      "group": "Files & external users",
+      "uuid": "e2ab819a-c524-40a1-a02c-0bd17356aace"
+    },
+    {
+      "id": 49404,
+      "title": "Reports",
+      "group": "Admin & reporting",
+      "uuid": "fbc50d9b-4478-43fa-95b9-6ce1432bafdb"
+    },
+    {
+      "id": 8880,
+      "title": "Admin Modules",
+      "group": "Admin & reporting",
+      "uuid": "be5ce713-1f21-4ece-b90b-2356c910965f"
     }
   ]
 }
