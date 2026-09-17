@@ -247,6 +247,7 @@ function mount() {
         </div>`;
       })
       .join('');
+    body.scrollTop = 0;
     body.querySelectorAll('.subject > button').forEach((b) =>
       b.addEventListener('click', () => {
         const expanded = b.parentElement.classList.toggle('open');
@@ -259,6 +260,7 @@ function mount() {
     body.innerHTML = hits.length
       ? `<div class="results">${hits.map((h) => itemHTML(h, terms)).join('')}</div>`
       : `<div class="msg">No results for that search.</div>`;
+    body.scrollTop = 0;
   }
 
   async function run() {
