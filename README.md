@@ -85,8 +85,8 @@ the file reorders the widget.
 
 ### Support form
 
-The panel's footer carries a **Submit a ticket** link, set by `ticketUrl` at the top of
-`config.json`:
+The panel's footer reads *Still stuck? Submit a ticket*, linking to the URL set by
+`ticketUrl` at the top of `config.json`:
 
 ```json
 { "ticketUrl": "https://forms.clickup.com/…", "subjects": [ … ] }
