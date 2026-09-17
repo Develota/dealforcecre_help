@@ -1,0 +1,11 @@
+/manifest.json
+  Cache-Control: no-cache
+  Access-Control-Allow-Origin: *
+
+/index.*.json
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/help-widget.js
+  Cache-Control: public, max-age=300
+  Access-Control-Allow-Origin: *
