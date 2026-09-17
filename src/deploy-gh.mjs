@@ -71,7 +71,6 @@ if (failure) {
 const m = repo.match(/github\.com[/:]([^/]+)\/(.+?)(?:\.git)?$/);
 const base = (process.env.GH_PAGES_URL || (m ? `https://${m[1].toLowerCase()}.github.io/${m[2]}` : '')).replace(/\/$/, '') || '<your pages url>';
 console.log(`published ${files.length} files to gh-pages\n`);
-console.log(`  <script src="${base}/help-widget.js" defer></script>`);
-console.log('  <div id="dfcre-help"></div>\n');
+console.log(`  <script src="${base}/help-widget.js" defer></script>\n`);
 console.log('First deploy only: repo Settings -> Pages -> Source = gh-pages branch.');
 console.log('Pages can take a minute to go live.');
