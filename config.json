@@ -1,5 +1,6 @@
 {
-  "_comment": "One entry per Trainual subject to index, in the order they should appear. `group` is the heading it sits under in the widget; consecutive entries sharing a group are listed together. `uuid` is the Public Share id from https://share.trainual.com/subject/<uuid> - it is NOT available through the API and must be pasted by hand. `title` is a human label; the live title from Trainual is indexed.",
+  "_comment": "One entry per Trainual subject to index, in the order they should appear. `group` is the heading it sits under in the widget; consecutive entries sharing a group are listed together. `uuid` is the Public Share id from https://share.trainual.com/subject/<uuid> - it is NOT available through the API and must be pasted by hand. `title` is a human label; the live title from Trainual is indexed. `ticketUrl` is the support form the widget's \"Submit a ticket\" footer link opens; leave it empty to hide that link.",
+  "ticketUrl": "https://forms.clickup.com/25681519/f/rfqkf-23637/QD1D28WS00VH68XNEU",
   "subjects": [
     {
       "id": 17,

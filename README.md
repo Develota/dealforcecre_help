@@ -83,6 +83,19 @@ script's own folder — useful when testing a local build against a deployed wid
 consecutive entries sharing a `group` are shown together under one heading. Reordering
 the file reorders the widget.
 
+### Support form
+
+The panel's footer carries a **Submit a ticket** link, set by `ticketUrl` at the top of
+`config.json`:
+
+```json
+{ "ticketUrl": "https://forms.clickup.com/…", "subjects": [ … ] }
+```
+
+It opens in a new tab and is baked into the widget at build time, so it still works if
+the search index fails to load — which is when someone is most likely to want to report
+a problem. Leave it empty to hide the link.
+
 ### Adding a subject
 
 1. In Trainual, open the subject in **edit mode** → Share → Public share

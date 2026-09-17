@@ -3,6 +3,9 @@
 //   <script src="https://<host>/help-widget.js" defer></script>
 import MiniSearch from 'minisearch';
 
+// Replaced by esbuild from config.json's ticketUrl.
+const TICKET_URL = typeof __TICKET_URL__ === 'string' ? __TICKET_URL__ : '';
+
 const SELF = document.currentScript;
 const BASE = (SELF?.dataset.base || SELF?.src || '').replace(/\/[^/]*$/, '');
 
@@ -92,7 +95,17 @@ a.item .x { font-size: 12px; color: #868e96; margin-top: 2px; line-height: 1.45;
 mark { background: #ffe9c7; color: inherit; padding: 0 1px; border-radius: 2px; }
 
 .msg { padding: 28px 18px; text-align: center; color: #adb5bd; font-size: 13px; }
-.foot { flex: none; padding: 9px 18px; border-top: 1px solid #f0f0f0; font-size: 11px; color: #adb5bd; text-align: center; }
+.foot {
+  flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 9px 14px 9px 18px; border-top: 1px solid #f0f0f0; font-size: 11px; color: #adb5bd;
+}
+.ticket {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 10px; border-radius: 6px; text-decoration: none;
+  font-size: 12px; font-weight: 600; color: #dd5751; background: #fdf3f2;
+}
+.ticket:hover { background: #fbe7e5; }
+.ticket svg { width: 14px; height: 14px; }
 
 @media (max-width: 480px) {
   .panel { right: 12px; left: 12px; width: auto; bottom: 84px; }
@@ -104,6 +117,7 @@ const ICON = {
   help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 3.6 2.8c-.5.2-.8.7-.8 1.2v.6"/><circle cx="12" cy="17.2" r="1.1" fill="currentColor" stroke="none"/></svg>',
   close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+  ticket: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v13H4z"/><path d="M8 10h8M8 14h5"/></svg>',
   chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
 };
 
@@ -200,7 +214,10 @@ function mount() {
           <input type="search" placeholder="Search help…" autocomplete="off" aria-label="Search help" />
         </div>
         <div class="body" role="listbox"><div class="msg">Loading…</div></div>
-        <div class="foot">Opens in Trainual</div>
+        <div class="foot">
+          <span>Opens in Trainual</span>
+          ${TICKET_URL ? `<a class="ticket" href="${esc(TICKET_URL)}" target="_blank" rel="noopener">${ICON.ticket}Submit a ticket</a>` : ''}
+        </div>
       </div>
     </div>`;
 

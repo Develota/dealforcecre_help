@@ -50,7 +50,7 @@ async function pool(items, limit, fn) {
 
 /* ---------- config ---------- */
 
-const { subjects: configured } = JSON.parse(await readFile('config.json', 'utf8'));
+const { subjects: configured, ticketUrl = '' } = JSON.parse(await readFile('config.json', 'utf8'));
 
 const missing = configured.filter((s) => !s.uuid);
 if (missing.length) {
@@ -192,6 +192,9 @@ await esbuild({
   target: ['es2020'],
   outfile: join(DIST, 'help-widget.js'),
   logLevel: 'warning',
+  // Baked in at build time so the link works even when the index fails to load —
+  // which is exactly when someone is most likely to want to report a problem.
+  define: { __TICKET_URL__: JSON.stringify(ticketUrl) },
 });
 
 // Cloudflare Pages applies these at deploy time. GitHub Pages ignores the file and
