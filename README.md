@@ -133,8 +133,13 @@ updates immediately rather than after ten minutes.
 or public sharing was switched off in Trainual. Get the current uuid, or remove the entry.
 
 **Search box appears but finds nothing.** The index could not load. The widget says why
-in the results panel — usually the host is not sending `Access-Control-Allow-Origin: *`,
-or the page was opened from the filesystem rather than over http.
+in the results panel.
+
+"Failed to fetch" with the host reachable in a browser usually means a **redirect**. If
+the Pages site has a custom domain, `<org>.github.io/...` redirects to it and the
+redirect response carries no CORS header — which browsers reject even though the final
+URL is fine. `curl` follows it happily, so it looks healthy from the terminal. Load the
+widget from the canonical domain instead, and set `GH_PAGES_URL` so deploys print it.
 
 **A result opens a Trainual page that says sign in.** Public sharing was turned off for
 that subject after the last build. Re-enable it, or remove the subject and rebuild.

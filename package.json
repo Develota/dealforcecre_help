@@ -13,8 +13,7 @@
     "minisearch": "^7.2.0"
   },
   "devDependencies": {
-    "esbuild": "^0.24.0",
-    "gh-pages": "^6.3.0"
+    "esbuild": "^0.24.0"
   },
   "engines": {
     "node": ">=20"
